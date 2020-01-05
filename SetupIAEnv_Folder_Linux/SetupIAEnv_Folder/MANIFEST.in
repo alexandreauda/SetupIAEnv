@@ -1,0 +1,33 @@
+# Include the license file
+include LICENSE.txt
+
+# Include the MANIFEST.in file
+include MANIFEST.in
+
+# Include the Pipfile file
+include Pipfile
+
+# Include the Pipfile.lock file
+include Pipfile.lock
+
+# Include the README
+include README.md
+include README.rst
+
+# Include the requirements.txt file
+include requirements.txt
+
+# Include the classes files
+recursive-include setupIAEnv/classes *
+
+# Include the output files
+recursive-include setupIAEnv/input *
+
+# Include the output files
+recursive-include setupIAEnv/output *
+
+# Include the data files
+recursive-include setupIAEnv/data *
+
+# Include the Documentation files
+recursive-include Documentation *

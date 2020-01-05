@@ -1,0 +1,551 @@
+Python packaging:
+
+Ressources (links):
+https://packaging.python.org/
+https://packaging.python.org/guides/
+https://packaging.python.org/tutorials/installing-packages/
+https://www.tensorflow.org/install/pip?lang=python2
+https://virtualenv.pypa.io/en/latest/userguide/?highlight=system-site-packages
+https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies
+# https://realpython.com/pipenv-guide/
+
+#**************************************************Learn how to install dependency packages or an whole project**************************************************
+
+#******Installing required tools******
+
+Verify if python and pip are install on the system, with the following commands:
+python --version
+pip --version
+
+If these packages are already installed, skip to the next step.
+Otherwise, install Python (https://www.python.org/) and the pip package manager(https://pip.pypa.io/en/stable/installing/) with the following commands: 
+
+# Update the repo.
+sudo apt update
+
+# Install python
+sudo apt install python-dev 
+
+# Install pip
+sudo apt install python-pip
+
+Then do the following command to know if the packages are well installed:
+python --version
+pip --version
+
+# If there is still some issues with pip (e.g.: ImportError: cannot import name main), try the following commands:
+sudo python -m pip uninstall pip && sudo apt install python-pip --reinstall
+pip --version
+
+# While pip alone is sufficient to install from pre-built binary archives, up to date copies of the setuptools and
+# wheel projects are useful to ensure you can also install from source archives:
+python -m pip install --upgrade pip setuptools wheel
+
+
+#******Setup virtualenv******
+
+Python “Virtual Environments” allow Python packages to be installed in an isolated location for a particular application, rather than being installed globally.
+Imagine you have an application that needs version 1 of LibFoo, but another application requires version 2. How can you use both these applications? If you install everything into /usr/lib/python3.6/site-packages 
+(or whatever your platform’s standard location is), it’s easy to end up in a situation where you unintentionally upgrade an application that shouldn’t be upgraded.
+Or more generally, what if you want to install an application and leave it be? If an application works, any change in its libraries or the versions of those libraries can break the application.
+Also, what if you can’t install packages into the global site-packages directory? For instance, on a shared host.
+In all these cases, virtual environments can help you. They have their own installation directories and they don’t share libraries with other virtual environments.
+Currently, there are two common tools for creating Python virtual environments:
+
+    venv is available by default in Python 3.3 and later, and installs pip and setuptools into created virtual environments in Python 3.4 and later.
+    virtualenv needs to be installed separately, but supports Python 2.7+ and Python 3.3+, and pip, setuptools and wheel are always installed into created virtual environments by default (regardless of Python version).
+
+Also, pipenv can be use to create virtualenv.
+
+###################
+# Method with virtualenv (low-level).
+
+#******Install virtualenv******
+
+#Verify if virtualenv are install on the system, with the following commands:
+virtualenv --version
+
+#If these packages are already installed, skip to the next step.
+#Otherwise, install virtualenv (https://virtualenv.pypa.io/en/stable/) with the following commands:
+
+# Update the repo.
+sudo apt update
+
+# Install virtualenv
+sudo pip install -U virtualenv  # system-wide install
+# OR
+sudo apt install virtualenv
+
+# Check if virtualenv is well install.
+virtualenv --version
+
+# To upgrade virtualenv at any time:
+pip install --upgrade virtualenv
+
+
+#******Create the virtualenv directory******
+
+# Create a new virtual environment and making a ./DIR directory to hold it: 
+virtualenv <DIR>
+# OR
+# Clone a project and make a virtual environment of it.
+git clone --recursive <URL_Github_Repo>
+virtualenv <URL_Github_Repo>
+
+e.g:
+virtualenv ./beholder
+
+Note: to delete the virtual environment, execute:
+(ENV)$ deactivate # Only if already in the virtual environment you want to delete.
+rm -r <DIR> (e.g.: rm -r beholder/)
+
+
+#******Activate the virtual environment******
+
+# Activate the virtual environment using a shell-specific command:
+source <DIR>/bin/activate
+
+e.g:
+source ./beholder/bin/activate
+
+When virtualenv is active, your shell prompt is prefixed with (DIR). So in the exemple, the shell prompt is prefixed
+with (behoder). 
+
+Note: to exit virtualenv : 
+deactivate  # don't exit until you're done using beholder.
+To restart the virtualenv:
+source ./beholder/bin/activate
+
+
+#******Upgrade pip******
+
+Install packages within a virtual environment without affecting the host system setup. Start by upgrading pip: 
+pip install --upgrade pip
+pip list  # show packages installed within the virtual environment
+
+
+# ******Installation******
+
+
+## To install the project itself in the virtual environment.
+
+#***If the project has been package and upload on PyPI (Python Package Index).
+pip install <project>
+
+#***If the project has been package as a source package and is host somewhere (but not in PyPI (Python Package Index)).
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project.gz>
+tar -xzf <project.gz>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+#***If the project has been package as a source package somewhere but not in PyPI (Python Package Index)) but is not zip (ex: on github).
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+
+#******Upgrade the project from PyPI (Python Package Index) in the virtual environment.******
+#***If the project has been package and upload on PyPI
+pip install --upgrade <project>
+
+e.g.: 
+pip install --upgrade tensorflow
+
+#***If the project has been package as a source package and is host somewhere (but not in PyPI).
+rm -r <project>
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project.gz>
+tar -xzf <project.gz>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+#***If the project has been package as a source package somewhere but not in PyPI) but is not zip (ex: on github)
+rm -r <project>
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+
+#******Uninstall project in the virtual environment.******
+pip uninstall <project>
+
+e.g.:
+pip uninstall tensorflow
+
+
+## To install dependency packages in the virtual environment.
+
+#***Installing dependency packages from a requirements.txt file in the virtual environment.***
+pip install -r requirements.txt
+
+#***Installing dependency packages from PyPI (Python Package Index) in the virtual environment.***
+pip install <package1>
+pip install <package2>
+...
+pip install <packageN>
+
+e.g.: 
+pip install requests
+pip install networkx
+pip install tensorflow
+
+e.g.:
+pip install [--user] "SomePackage"
+# OR 
+pip install [--user] "SomePackage==1.4"
+# Or, to install greater than or equal to one version and less than another:
+pip install [--user] "SomePackage>=1,<2"
+
+
+#******Upgrade dependency packages from PyPI (Python Package Index) in the virtual environment.******
+pip install --upgrade <package1>
+pip install --upgrade <package2>
+...
+pip install --upgrade <packageN>
+
+e.g.:
+pip install --upgrade requests
+pip install --upgrade networkx
+pip install --upgrade tensorflow
+
+#******Uninstall dependency packages in the virtual environment.******
+pip uninstall <package1>
+pip uninstall <package2>
+...
+pip uninstall <packageN>
+
+e.g.: 
+pip uninstall requests
+pip uninstall networkx
+pip uninstall tensorflow
+
+###################
+# Method with pipenv (high-level)(prefered method):
+
+#******Install pipenv******
+
+# Install pipenv
+sudo pip install --user pipenv # https://docs.pipenv.org/en/latest/install/#pragmatic-installation-of-pipenv
+# or
+sudo -H pip install -U pipenv
+
+# Check if pipenv is well install.
+pipenv --version
+
+# To upgrade pipenv at any time:
+pip install --user --upgrade pipenv
+
+
+#******Create the virtualenv directory******
+
+#https://docs.pipenv.org/en/latest/basics/#example-pipenv-workflow
+
+# Clone / create project repository:
+mkdir <myproject>
+# OR
+git clone --recursive <URL_Github_Repo>
+
+# Go within the project
+cd <myproject>
+
+
+#******Activate the virtual environment******
+
+# Next, activate the Pipenv shell:
+pipenv shell
+
+Note: to quit the pipenv shell:
+exit
+To restart the pipenv shell:
+pipenv shell
+
+
+
+# ******Installation******
+
+
+## To install the project itself in the virtual environment.
+
+#***If the project has been package and upload on PyPI (Python Package Index).
+pipenv install <project>
+
+#***If the project has been package as a source package and is host somewhere (but not in PyPI (Python Package Index)).
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project.gz>
+tar -xzf <project.gz>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+#***If the project has been package as a source package somewhere but not in PyPI (Python Package Index)) but is not zip (ex: on github).
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+
+#******Upgrade the project from PyPI (Python Package Index) in the virtual environment.******
+#***If the project has been package and upload on PyPI
+pipenv install --upgrade <project>
+
+e.g.: 
+pipenv install --upgrade tensorflow
+
+#***If the project has been package as a source package and is host somewhere (but not in PyPI).
+rm -r <project>
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project.gz>
+tar -xzf <project.gz>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+#***If the project has been package as a source package somewhere but not in PyPI) but is not zip (ex: on github)
+rm -r <project>
+wget http(s)://<source package location>/<project.gz> # or git clone http(s)://<source package location>/<project>
+cd <project>
+<Install all the dependency packages of the project (see below (in section: "To install dependency packages in the virtual environment") to know how)>
+python setup.py install --user
+
+
+#******Uninstall project in the virtual environment.******
+pipenv uninstall <project>
+
+e.g.:
+pipenv uninstall tensorflow
+
+
+## To install dependency packages in the virtual environment.
+
+#***Installing dependency packages in the virtual environment from a Pipfile file.***
+# Installs all packages from Pipfile.
+# If you add the --two or --three flags to that following command, it will initialise your project to use Python 2
+# or 3, respectively. Otherwise the default version of Python will be used.
+pipenv install [--two or --three]
+
+#***Installing dependency packages from a requirements.txt file in the virtual environment.***
+pipenv install -r requirements.txt
+
+#**From the setup.py file (if setup.py is present, you should always do it, even if you have done one of the two above)**
+#Tell Pipenv to lock all your declared dependencies in the field: install_requires of the file setup.py (i.e: all the dependency that is declared in setup.py (in the field: install_requires) are install in the virtual environment).
+pipenv install -e .
+pipenv update # Put all the new installed packages in the pipfile.lock + Installs all packages specified in Pipfile.lock.
+
+#***Installing dependency packages from PyPI (Python Package Index) in the virtual environment.***
+pipenv install <package1>
+pipenv install <package2>
+...
+pipenv install <packageN>
+
+e.g.: 
+pipenv install requests
+pipenv install networkx
+pipenv install tensorflow
+
+e.g.:
+pipenv install [--user] "SomePackage"
+# OR 
+pipenv install [--user] "SomePackage==1.4"
+# Or, to install greater than or equal to one version and less than another:
+pipenv install [--user] "SomePackage>=1,<2"
+
+
+#******Upgrade dependency packages from PyPI (Python Package Index) in the virtual environment.******
+pipenv install --upgrade <package1>
+pipenv install --upgrade <package2>
+...
+pipenv install --upgrade <packageN>
+
+e.g.:
+pipenv install --upgrade requests
+pipenv install --upgrade networkx
+pipenv install --upgrade tensorflow
+
+#******Uninstall dependency packages in the virtual environment.******
+pipenv uninstall <package1>
+pipenv uninstall <package2>
+...
+pipenv uninstall <packageN>
+
+e.g.: 
+pipenv uninstall requests
+pipenv uninstall networkx
+pipenv uninstall tensorflow
+
+
+#******(OPTIONAL)Check packages for security vulnerabilities and against PEP 508 markers provided in Pipfile.******
+# Check all packages
+pipenv check
+
+#******(OPTIONAL)Displays currently-installed dependency graph information.******
+pipenv graph
+
+#******(OPTIONAL)Uninstalls all packages not specified in Pipfile.lock.******
+pipenv clean
+
+###################
+
+#**************************************************Learn how to configure your project (developper side)**************************************************
+
+#******Add requirements files (for packages dependency) to the project (ie add Pipfile, Pipfile.lock and requirements.txt)******
+
+#***Add a Pipfile and Pipfile.lock***
+
+#**From pipenv**
+You have nothing to do as the Pipfile and Pipfile.lock is updated each time you execute: pipenv install ...
+To be sure that Pipfile.lock is update, you can do: pipenv lock # Put all the new installed packages in the pipfile.lock
+
+#**From the setup.py file**
+#Tell Pipenv to lock all your declared dependencies in the field: install_requires of the file setup.py (i.e: all the dependency that is declared in setup.py (in the field: install_requires) are install in the virtual environment).
+pipenv install -e .
+pipenv lock # Put all the new installed packages in the pipfile.lock
+
+#**Manual (not recommanded)**
+You can create manually a Pipfile and Pipfile.lock but this method is really not recommanded.
+
+
+#***Add a requirements.txt***
+
+#**With pipenv (recommanded)**
+# Method 1
+# You can convert a Pipfile and Pipfile.lock into a requirements.txt
+pipenv lock -r > requirements.txt
+
+# Method 2
+# Save all the packages in the file requirements.txt.
+# Note: There are tools to better automate the generation of requirements.txt than pip freeze: https://medium.com/python-pandemonium/better-python-dependency-and-package-management-b5d8ea29dff1
+pipenv run pip freeze > requirements.txt
+
+
+#**With pip (less recommanded)**
+# Save all the packages in the file requirements.txt.
+# Note: There are tools to better automate the generation of requirements.txt than pip freeze: https://medium.com/python-pandemonium/better-python-dependency-and-package-management-b5d8ea29dff1
+pip freeze > requirements.txt
+
+
+#**Manual (not recommanded)**
+You can create manually a requirements.txt but this method is really not recommanded.
+
+
+
+Then, when you have Pipfile, Pipfile.lock and requirements.txt in your project, do the following
+Verify that all the package versions are pin. Indeed, your dependencies should be pin, meaning every package should have a fixed version.
+# ... 
+
+Add Pipfile, Pipfile.lock and requirements.txt to the root directory of the project. 
+# ... (move Pipfile, Pipfile.lock and requirements.txt to the root directory of the project)
+
+Your project structure is therefore now the following:
+-Pipfile
+-Pipfile.lock
+-requirements.txt
+-<your Project directory>
+
+
+#******Packaging Python Projects and Upload Projects on PyPI******
+
+#*****Packaging your Projects*****
+
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#packaging-and-distributing-projects
+# see: https://packaging.python.org/tutorials/packaging-projects/#packaging-python-projects
+# see: https://packaging.python.org/guides/
+
+Package a python project is useful to be able to upload it on PyPI (Python Package Index). 
+Indeed, only packed packages/projects can be upload on PyPI (Python Package Index).
+
+#****Structure the project to be able to pack it****
+To be able to pack a python project, you have to structure your project this way (and add the folowing files/directories):
+-setup.py
+-setup.cfg
+-README.rst / README.md
+-MANIFEST.in
+-LICENSE.txt
+-<your Project directory>
+
+Therefore, with the requirements files (for packages dependency) (Pipfile, Pipfile.lock and requirements.txt), the project structure should now be the following:
+-Pipfile
+-Pipfile.lock
+-requirements.txt
+-setup.py
+-setup.cfg
+-README.rst / README.md
+-MANIFEST.in
+-LICENSE.txt
+-<your Project directory>
+
+
+#***Setup you project to package it***
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project
+
+#**Write the setup.py file**
+...
+Pour les entry_points, voir le lien suivant pour bien comprendre: https://amir.rachum.com/blog/2017/07/28/python-entry-points/
+
+#**Write the setup.cfg file**
+...
+
+
+#**Write the README.rst/README.md file**
+...
+
+
+#**Write the MANIFEST.in file**
+...
+
+
+#**Write the LICENSE.txt file**
+...
+
+
+#****Pack your project****
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#packaging-your-project
+
+When your project is structure like describe above, you project is ready to be packed.
+To pack your project, run the following commands:
+python setup.py sdist
+
+This will create an archive in the folder: dist/.
+For instance: dist/beholder-1.0.0.tar.gz
+
+Then, you should create a wheel. To do that, if your code support both python2 and python3, you can do:
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#universal-wheels
+python setup.py bdist_wheel --universal
+
+If your code only support python2 or only support python3, you can run the following command (no matter the version of python that your code support):
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#pure-python-wheels
+python setup.py bdist_wheel
+
+This will create an wheel in the folder: dist/.
+For instance: dist/beholder-1.0.0-py2-none-any.whl
+
+...
+
+#****Uploading your Project to PyPI****
+#see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi
+
+#***Installing required tools to be able to upload your packed project on PyPI (Python Package Index)***
+pip install twine
+
+#***Create an account on PyPI (Python Package Index)***
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#create-an-account
+
+
+#***Upload your project on PyPI (Python Package Index)***
+# see: https://packaging.python.org/guides/distributing-packages-using-setuptools/#upload-your-distributions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

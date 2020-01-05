@@ -1,0 +1,8 @@
+cd SetupIAEnv_Folder/
+pipenv install
+python setup.py install
+pipenv update
+pipenv graph
+pipenv check
+cd setupiaenv/
+setupIAEnv -h
