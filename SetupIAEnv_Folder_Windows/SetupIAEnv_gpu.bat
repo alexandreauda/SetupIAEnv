@@ -9,10 +9,10 @@ REM printf "\\n\\n    [+] Determining your current Conda environment: \\n"
 CALL conda info --envs
 REM https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands
 REM printf "\\n\\n    [+] Creation of Anaconda virtual environment $3: \\n"
-CALL conda create --name iaenv -y
+CALL conda create --name iaenv_gpu -y
 REM https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment
 REM printf "\\n\\n    [+] Activation of Anaconda virtual environment $3: \\n"
-CALL conda activate iaenv
+CALL conda activate iaenv_gpu
 REM printf "Done! \\n"
 REM https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#determining-your-current-environment
 REM printf "\\n\\n    [+] Determining your current Conda environment: \\n"
@@ -49,5 +49,5 @@ REM CALL conda deactivate
 REM # printf "Done! \\n"
 REM # # Remove virtual env.
 REM # printf "\\n\\n    [+] Remove virtual env $3: \\n"
-REM CALL conda env remove -n iaenv -y
+REM CALL conda env remove -n iaenv_gpu -y
 REM # printf "Done! \\n"
