@@ -1,6 +1,16 @@
 # SetupIAEnv_Folder_Linux
 
-TODO
+This project 
+
+`cd SetupIAEnv_Folder/
+pipenv shell
+pipenv install
+python setup.py install
+pipenv update
+pipenv graph
+pipenv check
+cd setupiaenv/
+setupIAEnv -h`
 
 A sample project that exists as an aid to the [Python Packaging User
 Guide][packaging guide]'s [Tutorial on Packaging and Distributing
