@@ -4,23 +4,23 @@ This project aims to install all packages required to perform machine learning a
 
 To do this, run the following commands:
 
-`cd SetupIAEnv_Folder/
+`cd SetupIAEnv_Folder/`
 
-pipenv shell
+`pipenv shell`
 
-pipenv install
+`pipenv install`
 
-python setup.py install
+`python setup.py install`
 
-pipenv update
+`pipenv update`
 
-pipenv graph
+`pipenv graph`
 
-pipenv check
+`pipenv check`
 
-cd setupiaenv/
+`cd setupiaenv/`
 
-setupIAEnv -h`
+`setupIAEnv -h`
 
 A sample project that exists as an aid to the [Python Packaging User
 Guide][packaging guide]'s [Tutorial on Packaging and Distributing
