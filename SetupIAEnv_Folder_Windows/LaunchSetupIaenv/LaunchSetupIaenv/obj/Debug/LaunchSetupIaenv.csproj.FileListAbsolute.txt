@@ -1,7 +1,0 @@
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\bin\Debug\LaunchSetupIaenv.exe.config
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\bin\Debug\LaunchSetupIaenv.exe
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\bin\Debug\LaunchSetupIaenv.pdb
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\obj\Debug\LaunchSetupIaenv.csprojAssemblyReference.cache
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\obj\Debug\LaunchSetupIaenv.csproj.CoreCompileInputs.cache
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\obj\Debug\LaunchSetupIaenv.exe
-C:\Users\aauda.adm\source\repos\LaunchSetupIaenv\LaunchSetupIaenv\obj\Debug\LaunchSetupIaenv.pdb
