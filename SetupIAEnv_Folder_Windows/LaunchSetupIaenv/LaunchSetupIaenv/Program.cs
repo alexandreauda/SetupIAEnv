@@ -18,7 +18,7 @@ namespace LaunchSetupIaenv
             string currentProcessPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
             string directoryName = string.Empty;
             // Perform 6 times the GetDirectoryName() method.
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 directoryName = Path.GetDirectoryName(currentProcessPath);
                 currentProcessPath = directoryName;
@@ -35,7 +35,7 @@ namespace LaunchSetupIaenv
                 throw new DirectoryNotFoundException();
             }
             // Run the bat that download and install Anaconda if not present.
-            Shell.executeCommand(directoryName, "InstallAnaconda.bat");
+            Shell.executeCommand(Path.Combine(directoryName,"Ressources"), "InstallAnaconda.bat");
             // Ajout de Anaconda au path pour pouvoir utiliser conda dans un cmd/PowerShell, s'il n'est pas déjà présent.
             // Il peut en effet être déjà présent car une autre solution pour ajouter Anaconda au path est de le spécifier dans l'installation (ne pas faire attention au warning).
             Shell.executeCommand(directoryName, "echo Add Anaconda to PATH... & path|find /i \";%USERPROFILE%\\anaconda3;%USERPROFILE%\\anaconda3\\Library\\mingw - w64\\bin;%USERPROFILE%\\anaconda3\\Library\\usr\\bin;%USERPROFILE%\\anaconda3\\Library\\bin;%USERPROFILE%\\anaconda3\\Scripts;\">nul || setx path \"%path%;%USERPROFILE%\\anaconda3;%USERPROFILE%\\anaconda3\\Library\\mingw - w64\\bin;%USERPROFILE%\\anaconda3\\Library\\usr\\bin;%USERPROFILE%\\anaconda3\\Library\\bin;%USERPROFILE%\\anaconda3\\Scripts;\"");
