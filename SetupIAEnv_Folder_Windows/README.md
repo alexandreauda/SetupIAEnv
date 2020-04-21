@@ -4,15 +4,12 @@ This project aims to install all packages required to perform machine learning a
 
 To do this, go in the folder you want to put the project, and clone the project (for instance in \MachineLearningProject).
 
-Then install Anaconda3.
+Then run the InstallAnaconda.bat. 
 
-Then, in Anaconda, go to the environment tab, click on base (root), then Open Terminal.
-Then with the terminal, go to the SetupIAEnv project that you have cloned (for instance: `cd \MachineLearningProject\SetupIAEnv`).
+This will check if Anaconda is installed. If not, this bat will downloaded the Anaconda installer (if not already present) and will let you install Anaconda3. This will also change your path to be able to run conda from command-line.
 
-Go to the folder \SetupIAEnv\SetupIAEnv_Folder_Windows with the following command in the terminal: `cd \SetupIAEnv\SetupIAEnv_Folder_Windows`.
+Finally, execute the .bat you want (with or without gpu support): `SetupIAEnv_gpu.bat` or `SetupIAEnv_gpu.bat`.
 
-Finally, execute the .bat you want (with or without gpu support) in the terminal: `SetupIAEnv_gpu.bat` or `SetupIAEnv_gpu.bat`.
-
-The script will create the env iaenv in Anaconda3 with all the packages useful for the machine learning and artificial intelligence.
+The script will create the virtual env iaenv in Anaconda3 with all the packages useful for the machine learning and artificial intelligence.
 
 
