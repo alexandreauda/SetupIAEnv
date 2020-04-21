@@ -1,7 +1,0 @@
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\bin\x64\Debug\LaunchSetupIaenv.exe.config
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\bin\x64\Debug\LaunchSetupIaenv.exe
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\bin\x64\Debug\LaunchSetupIaenv.pdb
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\obj\x64\Debug\LaunchSetupIaenv.csprojAssemblyReference.cache
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\obj\x64\Debug\LaunchSetupIaenv.csproj.CoreCompileInputs.cache
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\obj\x64\Debug\LaunchSetupIaenv.exe
-C:\Users\aauda.adm\Documents\Drone_Project\SetupIAEnv\SetupIAEnv_Folder_Windows\LaunchSetupIaenv\LaunchSetupIaenv\obj\x64\Debug\LaunchSetupIaenv.pdb
