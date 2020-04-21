@@ -39,7 +39,7 @@ namespace LaunchSetupIaenv
             // Ajout de Anaconda au path pour pouvoir utiliser conda dans un cmd/PowerShell, s'il n'est pas déjà présent.
             // Il peut en effet être déjà présent car une autre solution pour ajouter Anaconda au path est de le spécifier dans l'installation (ne pas faire attention au warning).
             Shell.executeCommand(directoryName, "echo Add Anaconda to PATH... & path|find /i \";%USERPROFILE%\\anaconda3;%USERPROFILE%\\anaconda3\\Library\\mingw - w64\\bin;%USERPROFILE%\\anaconda3\\Library\\usr\\bin;%USERPROFILE%\\anaconda3\\Library\\bin;%USERPROFILE%\\anaconda3\\Scripts;\">nul || setx path \"%path%;%USERPROFILE%\\anaconda3;%USERPROFILE%\\anaconda3\\Library\\mingw - w64\\bin;%USERPROFILE%\\anaconda3\\Library\\usr\\bin;%USERPROFILE%\\anaconda3\\Library\\bin;%USERPROFILE%\\anaconda3\\Scripts;\"");
-            Shell.executeCommand(directoryName, "SetupIAEnv.bat");
+            //Shell.executeCommand(directoryName, "SetupIAEnv.bat");
         }
     }
 }
