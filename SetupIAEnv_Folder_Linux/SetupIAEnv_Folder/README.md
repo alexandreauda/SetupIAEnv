@@ -2,6 +2,8 @@
 
 This project aims to install all packages required to perform machine learning and artificial intelligence on linux.
 
+We recommand to install pipenv: https://pipenv-fork.readthedocs.io/en/latest/install.html#installing-pipenv
+
 To do this, run the following commands:
 
 `cd SetupIAEnv_Folder/`
