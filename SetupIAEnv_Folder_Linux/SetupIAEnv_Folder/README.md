@@ -8,7 +8,11 @@ We recommand to install pipenv:
 
 -https://geniesducode.com/articles/comment-installer-pipenv/
 
-To do this, run the following commands:
+You must install tkinter with the following commands:
+
+`sudo apt-get install python3-tk`
+
+Then, run the following commands:
 
 `cd SetupIAEnv_Folder/`
 
