@@ -8,8 +8,13 @@ Then run the `InstallAnaconda.bat` by double clicking on the .bat file in the fo
 
 This will check if Anaconda is installed. If not, this bat will downloaded the Anaconda installer (if not already present) and will let you install Anaconda3. This will also change your path to be able to run conda from command-line.
 
+Then open Anaconda:
+
+![alt text](https://github.com/alexandreauda/SetupIAEnv/blob/master/SetupIAEnv_Folder_Windows/ImageForReadme/ImageForReadme_1.png)
+
 Finally, execute the .bat you want (with or without gpu support): `SetupIAEnv.bat` (for only CPU Support on Tensorflow) or `SetupIAEnv_gpu.bat` (for GPU Support on Tensorflow).
 
 The script will create the virtual env iaenv in Anaconda3 with all the packages useful for the machine learning and artificial intelligence.
+
 
 
