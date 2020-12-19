@@ -12,6 +12,10 @@ Then open Anaconda:
 
 ![alt text](https://github.com/alexandreauda/SetupIAEnv/blob/master/SetupIAEnv_Folder_Windows/ImageForReadme/ImageForReadme_1.png)
 
+Click on the "Environment" tab on the left panel:
+
+![alt text](https://github.com/alexandreauda/SetupIAEnv/blob/master/SetupIAEnv_Folder_Windows/ImageForReadme/ImageForReadme_2.PNG)
+
 Finally, execute the .bat you want (with or without gpu support): `SetupIAEnv.bat` (for only CPU Support on Tensorflow) or `SetupIAEnv_gpu.bat` (for GPU Support on Tensorflow).
 
 The script will create the virtual env iaenv in Anaconda3 with all the packages useful for the machine learning and artificial intelligence.
